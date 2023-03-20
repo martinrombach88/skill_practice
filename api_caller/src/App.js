@@ -37,6 +37,7 @@ function App() {
         setLoaded(true);
         log.add(" Loaded set to true, website acting on data.");
         setIsLog(true);
+        console.log(log);
       })
       .catch(function (error) {
         console.error(error);
