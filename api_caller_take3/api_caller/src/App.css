@@ -42,23 +42,11 @@
   font-size: 1rem;
 }
 
-.Content_box {
-  height: 200px;
-  background-color: white;
-  margin: 0;
-  padding: 1% 1%;
+.Content-box {
   color: #282c34;
+  background-color: white;
+  height: 200px;
   overflow-y: scroll;
-  overflow-wrap: break-word;
-}
-.Content_box p {
-  margin: 0;
-  padding: 0;
-}
-
-.Content button {
-  background-color: #282c34;
-  margin: 5% 0%;
-  color: white;
-  font-size: 1rem;
+  text-align: left;
+  padding: 0% 2%;
 }
