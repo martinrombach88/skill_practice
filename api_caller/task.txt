@@ -1,0 +1,50 @@
+API Caller
+
+Task:
+1. Create a new react app that calls the IMTV API. Write down how you do it.
+2. Make a console log flow of the entire process for the call.
+
+How did you do it?
+
+1. Create a react app: npm init react-app api_caller
+Side note: Create react app makes 200mb and 35000 files - is there a more lightweight solution than create_react_app?
+https://blog.logrocket.com/react-boilerplates-for-2021/
+
+2. Use the React template and CSS to make a basic display page
+for API content
+
+3. Install axios: npm install axios
+
+4. import axios, useEffect, useState
+
+5. Make a data useState prop to hold the data :- const [data, setData] = useState({ data: null });
+
+6. Make a loading useState prop to handle waiting :- const [loaded, setLoaded] = useState(false);
+
+7. Make a function to handle axios calls.
+
+  const fetchData = async () => {   
+    try {
+      -- call made --
+      const workRes = await axios("http://localhost:8080/getwork/");
+
+      -- data set --
+      setData({ work: workRes.data.workItems });
+
+      -- loaded handled --
+      setLoaded(true);
+
+      -- errors handled --
+    } catch (err) {
+      return <div>{err}</div>;
+    }
+  };
+
+8. Call the function within a useEffect underneath.
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+9. Make a Set using useState which is logged to, and collects both the logs and the stringified data.
+
