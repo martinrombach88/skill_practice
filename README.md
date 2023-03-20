@@ -4,4 +4,4 @@ A collection of practice exercises for essential development skills.
 
 Index:
 
-1. API Caller
+1. React API Caller

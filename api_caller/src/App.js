@@ -3,44 +3,48 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 //PSEUDO
-//Data: JSON.stringify the data and put it in the box.
 
+//Data: JSON.stringify the data and put it in the box.
 //Logs:
 // API call should have logs to show on the portfolio.
 // Use a Set to handle the logs and avoid the duplicates issue.
 
 // const url = "http://localhost:8080/getwork/";
+const url = prompt("Do you have an open API url to make a call to?");
 
-const url = prompt("Do you have an API url to make a call to?");
+//How can you handle API keys?
 
 function App() {
-  const [data, setData] = useState({ data: null });
   const [loaded, setLoaded] = useState(false);
   const [log, setLog] = useState(new Set());
   const [isLog, setIsLog] = useState(false);
 
-  const fetchData = async () => {
-    try {
-      log.add(" Making call to API at: " + url + ". Awaiting response.");
-      const result = await axios(url);
-      log.add(" UseState prop sets data to object received from API.");
+  //If you use this syntax, you can add headers and API keys into the options object
+  const options = {
+    method: "GET",
+    url: url,
+  };
 
-      log.add(" Data retrieved. ");
-
-      setData(JSON.stringify(result.data));
-      log.add(JSON.stringify(result.data));
-
-      log.add(" Loaded set to true, website acts on data.");
-      setLoaded(true);
-
-      setIsLog(true);
-    } catch (err) {
-      return <div>{err}</div>;
-    }
+  const fetchAxios = async () => {
+    await axios
+      .request(options)
+      .then(function (response) {
+        log.add(" Making call to API at: " + url + ". \nAwaiting response.");
+        log.add(
+          "\nData retrieved. Stringifying and adding to Set. Displaying full log via JSX dynamic variable. \n"
+        );
+        log.add("\n" + JSON.stringify(response.data));
+        setLoaded(true);
+        log.add(" Loaded set to true, website acting on data.");
+        setIsLog(true);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
   };
 
   useEffect(() => {
-    fetchData();
+    fetchAxios();
   }, []);
 
   return (
@@ -49,7 +53,7 @@ function App() {
       <div className="Content">
         <h4>Your API</h4>
         <div className="Content_box">
-          {loaded ? <p>{log}</p> : <p>Loading API data</p>}
+          {loaded ? <p>{log}</p> : <p>No data found at {url}</p>}
         </div>
       </div>
     </div>
