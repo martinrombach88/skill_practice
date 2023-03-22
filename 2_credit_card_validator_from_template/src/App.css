@@ -37,10 +37,23 @@
   }
 }
 
-.Content {
-  width: 80%;
-  color: black;
-  background-color: white;
-  overflow-y: scroll;
+.App-formDiv {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+}
+.App-form {
+  padding: 0.5em;
+}
+
+.App-form input {
+  padding: 0.2em;
+  margin: 0.2rem;
   font-size: 1rem;
+}
+
+.alert {
+  height: 50px;
+  text-align: center;
+  margin-top: 20px;
 }

@@ -1,0 +1,26 @@
+Aphrx method:
+
+1. Install libraries:
+
+react-credit-cards,
+https://www.npmjs.com/package/react-credit-cards 
+
+card-validator
+https://www.npmjs.com/package/card-validator
+
+//-> A retread with JS and no libraries could be good (see online tutorial?)
+
+2 Import the Card component from
+react credit cards. This component
+checks the card number in it's object
+field and changes it's styling to suit.
+
+3. Use the react app css files to style
+the form, making changes only if you need to.
+
+4. Create a form with the fields. Submission is 'Validate'
+
+5. Create a custom hook called 'UseForm' that handles the values of the fields.
+
+6. Create another hook (does this count as a hook? not just a class?) called ValidateInfo that uses
+the card-validator library.
