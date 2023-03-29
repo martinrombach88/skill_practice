@@ -76,8 +76,8 @@ export default function App() {
   );
 }
 
-//Don't really understand how to style in this yet.
-//Elements always too high up. Don't seem to respond to 'center'.
+//FlatList takes up huge segment of the phone. Also not yet scrollable?
+//Surely it should take up a normal amount of space and be scrollable.
 
 const styles = StyleSheet.create({
   container: {
