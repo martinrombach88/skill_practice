@@ -1,0 +1,4 @@
+1. Basic React API Caller
+2. React Credit Card Validator - using a template and explained in notes
+3. React Mapped User API (Random User API) - Destructuring, Map, Delete
+4. React Native Goal List - Rebuilding Academind Example from Scratch

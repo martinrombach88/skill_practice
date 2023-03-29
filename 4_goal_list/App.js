@@ -8,6 +8,7 @@ import {
   View,
   Image,
 } from "react-native";
+import GoalItem from "./components/GoalItem";
 import { StatusBar } from "expo-status-bar";
 
 /*
@@ -23,26 +24,33 @@ import { StatusBar } from "expo-status-bar";
 */
 
 export default function App() {
+  //Next:
+  //Goal item is a separate component
+  //Goal Input is a separate component in a modal
+
   const [enteredGoalText, setEnteredGoalText] = useState("");
   const [courseGoals, setCourseGoals] = useState([]);
+  const [idCount, setIdCount] = useState(0);
 
   const userInputHandler = (enteredText) => {
     setEnteredGoalText(enteredText);
   };
 
   const addGoalHandler = () => {
+    //set idCount to current
+    //increment idCount for next round
+    let id = idCount;
     const userInput = {
-      id: Math.random().toString(),
+      id: id,
       text: enteredGoalText,
     };
-
     setCourseGoals((currentCourseGoals) => [
       ...currentCourseGoals,
       { text: userInput.text, key: userInput.id },
     ]);
+    id++;
+    setIdCount(id);
   };
-  //state -> courseGoals useState([])
-  //state -> enteredGoalText useState("")
 
   return (
     <View style={styles.container}>
@@ -61,6 +69,7 @@ export default function App() {
       </View>
       <View style={styles.buttonContainer}>
         <Button title="Cancel" />
+        {/* Closes modal */}
         {/* <Button color={"#D21999"} title="Cancel" /> */}
         <Button title="Add Goal" onPress={addGoalHandler} />
       </View>
@@ -69,7 +78,8 @@ export default function App() {
       <FlatList
         data={courseGoals}
         renderItem={(goal) => {
-          return <Text key={goal.item.id}>{goal.item.text}</Text>;
+          return <GoalItem text={goal.item.text} />;
+          // return <Text key={goal.item.id}>{goal.item.text}</Text>;
         }}
       />
     </View>
@@ -78,6 +88,8 @@ export default function App() {
 
 //FlatList takes up huge segment of the phone. Also not yet scrollable?
 //Surely it should take up a normal amount of space and be scrollable.
+
+//Generally need a better feel for the styling.
 
 const styles = StyleSheet.create({
   container: {
