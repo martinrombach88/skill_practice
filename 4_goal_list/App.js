@@ -1,14 +1,7 @@
 import { useState } from "react";
-import {
-  Button,
-  StyleSheet,
-  FlatList,
-  Text,
-  TextInput,
-  View,
-  Image,
-} from "react-native";
+import { Button, FlatList, StyleSheet, View } from "react-native";
 import GoalItem from "./components/GoalItem";
+import GoalInput from "./components/GoalInput";
 import { StatusBar } from "expo-status-bar";
 
 /*
@@ -24,71 +17,66 @@ import { StatusBar } from "expo-status-bar";
 */
 
 export default function App() {
-  //Next:
-  //Goal item is a separate component
-  //Goal Input is a separate component in a modal
+  //Delete goals on click
 
-  const [enteredGoalText, setEnteredGoalText] = useState("");
   const [courseGoals, setCourseGoals] = useState([]);
-  const [idCount, setIdCount] = useState(0);
-
-  const userInputHandler = (enteredText) => {
-    setEnteredGoalText(enteredText);
+  const [modalVisible, setModalVisible] = useState(false);
+  const openModal = () => {
+    setModalVisible(true);
   };
 
-  const addGoalHandler = () => {
-    //set idCount to current
-    //increment idCount for next round
-    let id = idCount;
-    const userInput = {
-      id: id,
-      text: enteredGoalText,
-    };
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
+  const addGoalHandler = (enteredGoalText) => {
     setCourseGoals((currentCourseGoals) => [
       ...currentCourseGoals,
-      { text: userInput.text, key: userInput.id },
+      { text: enteredGoalText, id: Math.random().toString() },
+      //Only managed to generate random ids, not sequential ids. Possible update.
     ]);
-    id++;
-    setIdCount(id);
+    closeModal();
+  };
+
+  const deleteGoalHandler = (id) => {
+    setCourseGoals((currentCourseGoals) => {
+      return currentCourseGoals.filter((goal) => goal.id !== id);
+    });
   };
 
   return (
-    <View style={styles.container}>
-      <View>
-        <Image
-          style={styles.image}
-          source={require("./assets/images/goal.png")}
+    <>
+      <StatusBar style="light" />
+      <View style={styles.container}>
+        <View style={styles.modalButton}>
+          <Button title="Add Goal" color={"#A675E6"} onPress={openModal} />
+        </View>
+        <GoalInput
+          onAddGoal={addGoalHandler}
+          modalVisible={modalVisible}
+          closeModal={closeModal}
         />
+        <View style={styles.goalsContainer}>
+          <FlatList
+            data={courseGoals}
+            renderItem={(goal) => {
+              return (
+                <GoalItem
+                  text={goal.item.text}
+                  id={goal.item.id}
+                  onDeleteGoal={deleteGoalHandler}
+                />
+              );
+            }}
+          />
+        </View>
       </View>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter Your Goal"
-          onChangeText={userInputHandler}
-        />
-      </View>
-      <View style={styles.buttonContainer}>
-        <Button title="Cancel" />
-        {/* Closes modal */}
-        {/* <Button color={"#D21999"} title="Cancel" /> */}
-        <Button title="Add Goal" onPress={addGoalHandler} />
-      </View>
-
-      {/* <StatusBar style="auto" /> */}
-      <FlatList
-        data={courseGoals}
-        renderItem={(goal) => {
-          return <GoalItem text={goal.item.text} />;
-          // return <Text key={goal.item.id}>{goal.item.text}</Text>;
-        }}
-      />
-    </View>
+    </>
   );
 }
 
 //FlatList takes up huge segment of the phone. Also not yet scrollable?
 //Surely it should take up a normal amount of space and be scrollable.
-
 //Generally need a better feel for the styling.
 
 const styles = StyleSheet.create({
@@ -97,30 +85,16 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    padding: 16,
-    // backgroundColor: "#1e085a",
-  },
-  image: {
-    width: 100,
-    height: 100,
+    paddingTop: 50,
+    //paddingTop 80% -> temporary? this should be achieved with justify/align and the right boxes?
+    //modal will change it anyway
     backgroundColor: "#1e085a",
   },
-  inputContainer: {
-    alignItems: "center",
-    justifyContent: "center",
-    color: "white",
+  modalButton: {
+    width: 350,
+    marginBottom: 8,
   },
-  input: {
-    marginTop: 8,
-    padding: 8,
-    borderWidth: 2,
-    color: "black",
+  goalsContainer: {
+    flex: 5,
   },
-  buttonContainer: {
-    marginTop: 16,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: "50%",
-  },
-  goalsContainer: {},
 });
