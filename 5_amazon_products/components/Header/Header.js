@@ -1,4 +1,6 @@
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { LinearGradient } from "expo-linear-gradient";
 import { AntDesign } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -6,7 +8,7 @@ import { Feather } from "@expo/vector-icons";
 import { SimpleLineIcons } from "@expo/vector-icons";
 import { EvilIcons } from "@expo/vector-icons";
 
-const Header = () => {
+const Header = (props) => {
   let location = "New York";
   return (
     <LinearGradient
@@ -16,7 +18,13 @@ const Header = () => {
       end={{ x: 0.5, y: 0.4 }}
     >
       <View style={styles.searchBarContainer}>
-        <AntDesign name="arrowleft" size={30} style={styles.searchIconLarge} />
+        <Pressable onPress={() => props.navigation.navigate("Search Amazon")}>
+          <AntDesign
+            name="arrowleft"
+            size={30}
+            style={styles.searchIconLarge}
+          />
+        </Pressable>
         <View style={styles.searchBar}>
           <FontAwesome5 name="search" size={20} />
           <TextInput
@@ -47,9 +55,9 @@ const styles = StyleSheet.create({
   //Search container has pixel height because
   //flex causes visual errors when search is triggered
   searchContainer: {
-    height: 150,
+    height: 120,
     width: "100%",
-    paddingTop: 50,
+    paddingTop: 20,
     paddingLeft: 10,
   },
   searchBarContainer: {

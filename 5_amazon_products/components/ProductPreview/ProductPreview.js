@@ -8,7 +8,7 @@ const ProductPreview = (props) => {
       <Image style={styles.previewImage} source={{ uri: product.image }} />
 
       <View style={styles.previewDetails}>
-        <Pressable>
+        <Pressable onPress={() => props.navigation.navigate("Product Page")}>
           <Text style={styles.previewTitle} numberOfLines={3}>
             {product.title}
           </Text>

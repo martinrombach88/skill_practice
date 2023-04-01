@@ -3,15 +3,17 @@ import ProductPreview from "../../components/ProductPreview/ProductPreview.js";
 import Header from "../../components/Header/Header.js";
 import products from "../../components/products.js";
 
-const SearchPage = () => {
+const SearchPage = ({ navigation }) => {
   return (
     <View style={styles.root}>
-      <Header />
+      <Header navigation={navigation} />
       <View style={styles.resultsContainer}>
         <Text style={styles.resultsTitle}>RESULTS</Text>
         <FlatList
           data={products}
-          renderItem={(product) => <ProductPreview product={product} />}
+          renderItem={(product) => (
+            <ProductPreview product={product} navigation={navigation} />
+          )}
         />
       </View>
     </View>
