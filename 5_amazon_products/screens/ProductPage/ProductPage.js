@@ -1,37 +1,31 @@
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import Header from "../../components/Header/Header";
+import product from "../../components/product.js";
+import ImageCarousel from "../../components/ImageCarousel/ImageCarousel";
 
-const ProductPage = () => {
-  const product = {
-    id: "5",
-    title:
-      "Logitech MX Master 3 Advanced Wireless Mouse for Mac - Bluetooth/USB",
-    description: `Features & details
-    - MAGSPEED WHEEL: Ultra-fast, precise, quiet MagSpeed electromagnetic scrolling
-    - DARKFIELD 4000 DPI SENSOR: Darkfield 4000 DPI sensor for precise tracking on any surface, even glass (up to 4mm in thickness)
-    - COMFORTABLE DESIGN: Tactile reference for hand positioning makes it easy to stay oriented and in your flow
-    - FLOW CROSS-COMPUTER CONTROL: Supports flow cross-computer control across multiple screens. Pair up to 3 devices via Bluetooth Low Energy or Unifying USB receiver`,
-    image:
-      "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/products/mouse1.jpg",
-    images: [
-      "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/products/mouse1.jpg",
-      "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/products/mouse2.jpg",
-      "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/products/mouse3.jpg",
-    ],
-    options: ["Black", "Space Grey"],
-    avgRating: 4.8,
-    ratings: 2989,
-    price: 99.98,
-    oldPrice: 120.06,
-  };
-
-  //This page doesn't need to be mapped. Do one example page.
-
+const ProductPage = ({ navigation }) => {
   return (
     <View>
-      <Header />
+      <Header navigation={navigation} />
+      <Text>{product.title}</Text>
+
+      {/* Image Carousel */}
+      <ImageCarousel product={product} />
+
+      {/* Dot with current image */}
+      {/* Option selector */}
+      {/* Price */}
+      {/* Arrival Date */}
+      {/* Quantity */}
+      {/* Buttons */}
     </View>
   );
 };
 
+const styles = StyleSheet.create({
+  productImage: {
+    width: 100,
+    height: 100,
+  },
+});
 export default ProductPage;

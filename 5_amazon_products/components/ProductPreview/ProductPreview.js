@@ -1,12 +1,12 @@
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
+import products from "../../components/products.js";
 
 const ProductPreview = (props) => {
   const product = props.product.item;
   return (
     <View style={styles.previewContainer}>
       <Image style={styles.previewImage} source={{ uri: product.image }} />
-
       <View style={styles.previewDetails}>
         <Pressable onPress={() => props.navigation.navigate("Product Page")}>
           <Text style={styles.previewTitle} numberOfLines={3}>

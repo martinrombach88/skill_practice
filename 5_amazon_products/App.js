@@ -10,6 +10,7 @@ function SearchScreen({ navigation }) {
     <View style={styles.container}>
       <StatusBar style="auto" />
       <SearchPage navigation={navigation} />
+      {/* <ProductPage navigation={navigation} /> */}
     </View>
   );
 }
@@ -39,7 +40,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
   },
 });
