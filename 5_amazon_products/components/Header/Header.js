@@ -1,6 +1,4 @@
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { LinearGradient } from "expo-linear-gradient";
 import { AntDesign } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -48,16 +46,12 @@ const Header = (props) => {
 };
 
 const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    width: "100%",
-  },
   //Search container has pixel height because
   //flex causes visual errors when search is triggered
   searchContainer: {
-    height: 120,
+    height: 130,
     width: "100%",
-    paddingTop: 20,
+    paddingTop: 30,
     paddingLeft: 10,
   },
   searchBarContainer: {

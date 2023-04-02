@@ -5,10 +5,10 @@ import products from "../../components/products.js";
 const ProductPreview = (props) => {
   const product = props.product.item;
   return (
-    <View style={styles.previewContainer}>
-      <Image style={styles.previewImage} source={{ uri: product.image }} />
-      <View style={styles.previewDetails}>
-        <Pressable onPress={() => props.navigation.navigate("Product Page")}>
+    <Pressable onPress={() => props.navigation.navigate("Product Page")}>
+      <View style={styles.previewContainer}>
+        <Image style={styles.previewImage} source={{ uri: product.image }} />
+        <View style={styles.previewDetails}>
           <Text style={styles.previewTitle} numberOfLines={3}>
             {product.title}
           </Text>
@@ -24,9 +24,9 @@ const ProductPreview = (props) => {
             <Text style={styles.previewPriceText}>from</Text>
             <Text style={styles.previewPriceNumber}>${product.price}</Text>
           </View>
-        </Pressable>
+        </View>
       </View>
-    </View>
+    </Pressable>
   );
 };
 

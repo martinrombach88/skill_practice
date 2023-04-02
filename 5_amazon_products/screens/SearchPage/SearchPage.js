@@ -25,8 +25,6 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
   },
-  //Search container has pixel height because
-  //flex causes visual errors when search is triggered
 
   resultsContainer: {
     flex: 7,
