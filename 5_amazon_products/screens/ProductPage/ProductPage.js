@@ -13,6 +13,7 @@ const ProductPage = ({ navigation }) => {
       </Text>
 
       <ImageCarousel images={product.images} />
+
       {/* Option selector */}
 
       <View style={styles.productPrice}>
@@ -37,6 +38,10 @@ const ProductPage = ({ navigation }) => {
           Only {product.quantity} left in stock, order soon.
         </Text>
       )}
+
+      {/* Quantity Button */}
+      {/* Buy Now Button -> Vertical Gradient */}
+      {/* Add To Cart Button -> Vertical Gradient */}
     </View>
   );
 };
