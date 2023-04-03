@@ -1,0 +1,45 @@
+1. replace react-native-cli with latest version of
+react native community cli
+2. use a react native typescript template
+3. add a library for vector icons 
+-> gradle for android and 'info.plist' for ios
+(copied a list of fonts) 
+
+SafeAreaView -> IOS only boundaries component, 
+safe are can't be breached by content
+
+Makes comments where components will exist
+
+Pixel values for margin, borders
+
+Googles color picker (bing doesn't have it :/)
+
+Solved problem of overflowing text with
+flex 1 and limiting numberOfLines attribute of 
+Text to 3, which truncates text (words words...)
+
+Uses flex 2 / 3 to split columns in a component
+
+resizeMode (equivalent of object-fit)
+resizeMode: contain -> goes max size,
+leaves white space if height incorrect
+resizeMode: cover -> goes max size,
+crops part of the picture if it won't fit
+
+Uses a vector icons directory to get
+5 rating stars (icons) to add to a project,
+he uses fontawesome to make the final 
+stars
+
+Margin/Padding Vertical / Horizontal
+does both sides (like 0% 2%)
+
+Picker library for drop downs
+
+Uses Math.max(0, quantity -1)); to create a min
+of 0 for a value button
+
+
+If you aren't sure of an object's padding
+add a red background
+

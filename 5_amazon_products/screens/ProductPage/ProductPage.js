@@ -1,47 +1,109 @@
-import { Button, StyleSheet, Text, View } from "react-native";
+import {
+  Button,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
+import { EvilIcons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
 import Header from "../../components/Header/Header";
 import product from "../../components/product.js";
 import ImageCarousel from "../../components/ImageCarousel/ImageCarousel";
-import { EvilIcons } from "@expo/vector-icons";
 
 const ProductPage = ({ navigation }) => {
+  let quantity = 1;
+
+  const add = () => {
+    console.warn("Added to Cart");
+  };
+
+  const buy = () => {
+    console.warn("Moving to Payment Screen");
+  };
+
   return (
     <View style={styles.product}>
       <Header navigation={navigation} />
-      <Text style={[styles.productText, styles.productTitle]}>
-        {product.title}
-      </Text>
-
-      <ImageCarousel images={product.images} />
-
-      {/* Option selector */}
-
-      <View style={styles.productPrice}>
-        <Text style={styles.productPriceDollar}>$</Text>
-        <Text style={styles.productPriceNumber}>{product.price}</Text>
-      </View>
-      <View>
-        <Text style={styles.productText}>{product.details}</Text>
-      </View>
-      <View
-        style={[styles.productText, styles.productRow, styles.productArrival]}
-      >
-        <Text>Arrives: </Text>
-        <Text style={styles.boldText}>{product.arrival}</Text>
-      </View>
-      <View style={styles.productRow}>
-        <EvilIcons name="location" size={34} color="black" />
-        <Text style={styles.blueText}>Deliver to {product.location}</Text>
-      </View>
-      {product.quantity < 10 && (
-        <Text style={[styles.productQuantityText, styles.productText]}>
-          Only {product.quantity} left in stock, order soon.
+      <ScrollView>
+        <Text style={[styles.productText, styles.productTitle]}>
+          {product.title}
         </Text>
-      )}
 
-      {/* Quantity Button */}
-      {/* Buy Now Button -> Vertical Gradient */}
-      {/* Add To Cart Button -> Vertical Gradient */}
+        {/* Image Carousel, styling implemented. Later real code can be implemented in time */}
+        <ImageCarousel images={product.images} />
+
+        {/* Option selector - low priority, later if there's time*/}
+        {/* <View>
+        <LinearGradient
+          style={styles.productType}
+          colors={["#FFFFFF", "#B9B9B9"]}
+        >
+          <Text>Button </Text>
+        </LinearGradient>
+      </View> */}
+
+        <View style={styles.productPrice}>
+          <Text style={styles.productPriceDollar}>$</Text>
+          <Text style={styles.productPriceNumber}>{product.price}</Text>
+        </View>
+
+        <View>
+          <Text style={styles.productText}>{product.details}</Text>
+        </View>
+
+        <View
+          style={[styles.productText, styles.productRow, styles.productArrival]}
+        >
+          <Text>Arrives: </Text>
+          <Text style={styles.boldText}>{product.arrival}</Text>
+        </View>
+        <View style={styles.productRow}>
+          <EvilIcons name="location" size={34} color="black" />
+          <Text style={styles.blueText}>Deliver to {product.location}</Text>
+        </View>
+        {product.stock < 10 && (
+          <Text style={[styles.productStockText, styles.productText]}>
+            Only {product.stock} left in stock, order soon.
+          </Text>
+        )}
+
+        <Pressable>
+          <View style={styles.productQuantity}>
+            <Text style={styles.productQuantityText}>Qty: {quantity}</Text>
+            <AntDesign name="down" size={16} color="black" />
+          </View>
+        </Pressable>
+
+        <Pressable onPress={add}>
+          <View>
+            <LinearGradient
+              style={styles.buyProduct}
+              colors={["#F5D693", "#EDC151"]}
+            >
+              <Text>Add To Cart </Text>
+            </LinearGradient>
+          </View>
+        </Pressable>
+
+        <Pressable onPress={buy}>
+          <View>
+            <LinearGradient
+              style={styles.buyProduct}
+              colors={["#F5D2AA", "#EC9224"]}
+            >
+              <Text>Buy Now </Text>
+            </LinearGradient>
+          </View>
+        </Pressable>
+
+        <View>
+          <Text>{product.description}</Text>
+        </View>
+      </ScrollView>
     </View>
   );
 };
@@ -54,7 +116,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   productArrival: {
-    paddingTop: 30,
+    paddingTop: 25,
   },
   productText: {
     paddingHorizontal: 10,
@@ -80,10 +142,34 @@ const styles = StyleSheet.create({
   blueText: {
     color: "#3F98E7",
   },
-  productQuantityText: {
+  productStockText: {
     fontWeight: "bold",
     color: "#C26F27",
     fontSize: 16,
+  },
+  productQuantity: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    borderWidth: 2,
+    borderRadius: 8,
+    borderColor: "#CFCFD1",
+    backgroundColor: "#F0F0F0",
+    width: 75,
+    padding: 4,
+    marginHorizontal: 8,
+    marginVertical: 12,
+  },
+  productQuantityText: {
+    fontSize: 14,
+  },
+  buyProduct: {
+    paddingVertical: 10,
+    alignItems: "center",
+    borderColor: "#CF9E63",
+    borderRadius: 4,
+    marginHorizontal: 8,
+    marginVertical: 8,
   },
 });
 export default ProductPage;

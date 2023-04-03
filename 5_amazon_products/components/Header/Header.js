@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   searchContainer: {
     height: 130,
     width: "100%",
-    paddingTop: 30,
+    paddingTop: 40,
     paddingLeft: 10,
   },
   searchBarContainer: {
@@ -84,7 +84,6 @@ const styles = StyleSheet.create({
   locationBar: {
     flexDirection: "row",
     alignItems: "center",
-    paddingVertical: 4,
   },
   locationText: {
     fontSize: 14,
