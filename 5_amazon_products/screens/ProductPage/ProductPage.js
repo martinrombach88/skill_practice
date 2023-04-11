@@ -100,8 +100,8 @@ const ProductPage = ({ navigation }) => {
           </View>
         </Pressable>
 
-        <View>
-          <Text>{product.description}</Text>
+        <View style={styles.productDescription}>
+          <Text  >{product.description}</Text>
         </View>
       </ScrollView>
     </View>
@@ -171,5 +171,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 8,
     marginVertical: 8,
   },
+	productDescription: {
+		paddingHorizontal: 8,
+		paddingVertical: 8,
+	}
 });
 export default ProductPage;

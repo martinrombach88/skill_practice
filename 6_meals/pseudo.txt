@@ -1,0 +1,23 @@
+Overview: Tools: Stack Navigator, Drawer Navigator
+Screens: Categories, MealsOverview, MealsDetails, Favorites
+Components: Meal List (which renders MealItem), CategoryGridTile, IconButton
+
+1. Categories Screen contains CategoryGridTile component mapped from dummy data's CATEGORIES object
+2. Navigation links these categories up with pages based on their id (c1, c2)
+3. Linked pages contain mapped MealItem objects, which link to Meal Details pages
+4. Meal Details contains various components: Image, Title, Subtitle, Ingredients, Steps
+5. Header Navigation contains star icon for favorites. Favorites must be handled by zustand
+
+1. Install with typescript: npx create-expo-app -t expo-template-blank-typescript
+Import react navigation, stack navigator.
+2. Categories Screen has:
+- A Flat List of CategoryGridTile components. 
+- A function that creates a Category Tile and an individual navigation function with a specific id.
+You can use the any type to pass Typescript rules for now, until you know how to fill the areas with what's needed.
+
+
+
+
+
+Meal List page maps a list of Meals 
+Meal List Page knows which meals to map by the id it is given by the props + Navigator
