@@ -7,16 +7,19 @@ import CategoriesScreen from "./screens/CategoriesScreen"
 import MealsOverviewScreen from "./screens/MealsOverviewScreen"
 
 //Params are set up for each screen
-export type RootStackParamList = {
-	Categories: undefined;
+export type StackParamList = {
+	Categories: undefined
 	MealsOverview: {
 		id: string
-	};
+	}
 }
 
-const Stack = createNativeStackNavigator<RootStackParamList>()
+const Stack = createNativeStackNavigator<StackParamList>()
 
-export default function App() {
+// export default function App() {
+	
+//This is the typescript syntax for the app
+const App: React.FC = () => {
 	return (
 		<>
 			<StatusBar style="light" />
@@ -34,13 +37,15 @@ export default function App() {
 					<Stack.Screen
 						name={"MealsOverview"}
 						component={MealsOverviewScreen}
-						initialParams={{id: ""}}
+						initialParams={{ id: "" }}
 					/>
 				</Stack.Navigator>
 			</NavigationContainer>
 		</>
 	)
 }
+
+export default App;
 
 const styles = StyleSheet.create({
 	container: {

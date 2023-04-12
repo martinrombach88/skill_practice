@@ -1,5 +1,5 @@
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParams } from "../App";
+import { StackParamList } from "../App";
 import { useNavigation } from "@react-navigation/native"
 import { FlatList, StyleSheet, View } from "react-native"
 import CategoryGridTile from "../components/CategoryGridTile"
@@ -8,7 +8,7 @@ import { CATEGORIES } from "../data/dummy-data"
 
 function CategoriesScreen() {
 //Navigation function imports params from App.js navigator 
-	const categoryNav = useNavigation<NativeStackNavigationProp<RootStackParams>>()
+	const categoryNav = useNavigation<NativeStackNavigationProp<StackParamList>>()
 	function renderCategory(itemData : any) {
 		function navigateToOverview() {
 			console.log(itemData.item.id)
