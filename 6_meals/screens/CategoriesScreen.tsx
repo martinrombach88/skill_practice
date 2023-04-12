@@ -1,24 +1,27 @@
-import { FlatList, StyleSheet, Text, View } from "react-native"
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParams } from "../App";
+import { useNavigation } from "@react-navigation/native"
+import { FlatList, StyleSheet, View } from "react-native"
 import CategoryGridTile from "../components/CategoryGridTile"
 import { CATEGORIES } from "../data/dummy-data"
 
 
-//How do you import the navigation via Typescript?
-//Use the 'any' type for now
-
-// function CategoriesScreen({ navigation }) {
 function CategoriesScreen() {
+//Navigation function imports params from App.js navigator 
+	const categoryNav = useNavigation<NativeStackNavigationProp<RootStackParams>>()
 	function renderCategory(itemData : any) {
-		function testId() {
-			console.log(itemData.item.id);
+		function navigateToOverview() {
+			console.log(itemData.item.id)
+			categoryNav.navigate("MealsOverview", itemData.item.id)
 		}
 		return (
 			<CategoryGridTile
 				title={itemData.item.title}
 				color={itemData.item.color}
-				onPress={testId}
+				onPress={navigateToOverview}
 			/>
 		)
+
 	}
 
 	return (
@@ -31,6 +34,7 @@ function CategoriesScreen() {
 		</View>
 	)
 }
+
 export default CategoriesScreen
 
 const styles = StyleSheet.create({

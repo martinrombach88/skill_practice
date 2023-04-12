@@ -1,11 +1,13 @@
+import React from "react"
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+// import { RootStackParams } from "../App";
 import { FlatList, StyleSheet, Text, View } from "react-native"
 import { MEALS } from "../data/dummy-data"
 import MealCard from "../components/MealCard"
 
-function MealsOverviewScreen() {
-	const mealCards = () => {
-		
-	}
+// type Props = NativeStackNavigationProp<RootStackParams, "MealsOverview">
+
+function MealsOverviewScreen(){
 
 	return (
 		<View>
