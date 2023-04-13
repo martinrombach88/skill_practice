@@ -1,0 +1,17 @@
+Drawer Navigator - Installation
+
+in babel.config.js
+module.exports = function(api) {
+  api.cache(true);
+  return {
+    presets: ['babel-preset-expo'],
+    plugins: ['react-native-reanimated/plugin'],
+  };
+};
+ 
+npm install @react-navigation/drawer
+npx expo install react-native-gesture-handler react-native-reanimated
+npm install react-native-reanimated@2.9.1 --save --save-exact
+npx react-native start --reset-cache
+then exit out of metro
+npm start

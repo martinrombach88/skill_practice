@@ -7,27 +7,6 @@ type CategoryProps = {
 }
 
 function CategoryGridTile(props: CategoryProps) {
-
-/*
-You can enforce/inform the prop types like this:
-
-const useStyles = createUseStyles ({
-  wrapper: (props: { color: colors }) => ({
-    backgroundColor: props.color,
-  }),
-});
-colors is an enum I have in another file:
-
-export enum colors {
-  primaryBlue = '#2b27e2',
-  primaryOrange = '#ff8d69',
-  primaryBlack = '#0a0d3d',
-  primaryRed = '#ff1654',
-}
-This approach "works" but it is extremely clunky and verbose.
-I have run in to a similar TS issue when trying to use a theme, 
-*/
-
 	return (
 		<View style={[styles.tile, { backgroundColor: props.color }]}>
 			<Pressable onPress={props.onPress}>

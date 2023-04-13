@@ -1,43 +1,99 @@
 import { StatusBar } from "expo-status-bar"
 import { StyleSheet, Text, View } from "react-native"
 //If an item doesn't import, it means you need a { } around it
-import { NavigationContainer } from "@react-navigation/native"
+// import { createStackNavigator } from "@react-navigation/stack"
+import { StackNavigationProp } from "@react-navigation/stack"
+import { NavigationContainer, Route } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import { createDrawerNavigator } from "@react-navigation/drawer"
 import CategoriesScreen from "./screens/CategoriesScreen"
 import MealsOverviewScreen from "./screens/MealsOverviewScreen"
+import MealDetailsScreen from "./screens/MealDetailsScreen"
+import FavoritesScreen from "./screens/FavoritesScreen"
+import { Ionicons } from "@expo/vector-icons"
 
 //Params are set up for each screen
-export type StackParamList = {
-	Categories: undefined
-	MealsOverview: {
-		id: string
+export type RootStackParamList = {
+	CategoriesScreen: undefined
+	MealsOverviewScreen: {
+		route: {
+			params: {
+				id: { id: string }
+			}
+		}
 	}
+	MealDetailsScreen: undefined
 }
 
-const Stack = createNativeStackNavigator<StackParamList>()
+const Stack = createNativeStackNavigator<RootStackParamList>()
+const Drawer = createDrawerNavigator()
 
-// export default function App() {
-	
-//This is the typescript syntax for the app
-const App: React.FC = () => {
+function DrawerNavigator() {
+	return (
+		<Drawer.Navigator
+			screenOptions={{
+				headerStyle: { backgroundColor: "black" },
+				// header font
+				headerTintColor: "white",
+			}}
+		>
+			<Drawer.Screen
+				name="CategoriesScreen"
+				component={CategoriesScreen}
+				options={{
+					title: "All Categories",
+					drawerIcon: ({ color, size }) => (
+						<Ionicons name="list" color={color} size={size} />
+					),
+				}}
+			/>
+			<Drawer.Screen
+				name="FavoritesScreen"
+				component={FavoritesScreen}
+				options={{
+					title: "Favorites",
+					drawerIcon: ({ color, size }) => (
+						<Ionicons name="star" color={color} size={size} />
+					),
+				}}
+			/>
+		</Drawer.Navigator>
+	)
+}
+
+function App() {
 	return (
 		<>
 			<StatusBar style="light" />
 			<NavigationContainer>
 				<Stack.Navigator
-					initialRouteName={"Categories"}
+					initialRouteName={"CategoriesScreen"}
 					screenOptions={{
-						headerStyle: { backgroundColor: "#692B1E" },
+						headerStyle: { backgroundColor: "black" },
 						// header font
 						headerTintColor: "white",
-						contentStyle: { backgroundColor: "#3f2f25" },
 					}}
 				>
-					<Stack.Screen name={"Categories"} component={CategoriesScreen} />
 					<Stack.Screen
-						name={"MealsOverview"}
+						name="Drawer"
+						component={DrawerNavigator}
+						options={{
+							headerShown: false,
+						}}
+					/>
+					<Stack.Screen
+						name={"MealsOverviewScreen"}
+						//@ts-ignore
 						component={MealsOverviewScreen}
-						initialParams={{ id: "" }}
+					/>
+					<Stack.Screen
+						// Error: Type '(props: Props) => Element' is not assignable to type 'ScreenComponentType<RootStackParamList, "MealDetailsScreen"> | undefined'.
+						// Type '(props: Props) => Element' is not assignable to type 'FunctionComponent<{}>'.
+						// Types of parameters 'props' and 'props' are incompatible.
+						name={"MealDetailsScreen"}
+						//@ts-ignore
+						component={MealDetailsScreen}
+						options={{ title: "About The Meal" }}
 					/>
 				</Stack.Navigator>
 			</NavigationContainer>
@@ -45,7 +101,7 @@ const App: React.FC = () => {
 	)
 }
 
-export default App;
+export default App
 
 const styles = StyleSheet.create({
 	container: {
