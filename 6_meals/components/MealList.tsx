@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
 		marginVertical: 12,
 	},
 	listItem: {
-		backgroundColor: "green",
+		backgroundColor: "#9973A7",
 		borderRadius: 8,
 		margin: 8,
 		textAlign: "center",
