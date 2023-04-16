@@ -1,4 +1,5 @@
-import { FlatList, StyleSheet, Text, View } from "react-native"
+import { StyleSheet} from "react-native"
+import { Div, Text } from "react-native-magnus"
 
 type List = {
 	listTitle: string
@@ -9,48 +10,19 @@ function MealList({ list, listTitle }: List) {
 	// const MealList: React.FC<List> = ({ listTitle, list }) => {
 	const renderedList = list
 		? list.map((item) => (
-				<View key={item} style={styles.listItem}>
-					<Text style={styles.listItemText}>{item}</Text>
-				</View>
+				<Div key={item} rounded={"lg"} bg={"#9973A7"} m={8}>
+					<Text w={300} p={8} fontSize={16} color={"white"} textAlign="center">{item}</Text>
+				</Div>
 		  ))
 		: null
 
 	return (
-		<View>
-			<View style={styles.titleContainer}>
-				<Text style={styles.title}>{listTitle}</Text>
-			</View>
-
+		<Div>
+			<Div borderColor="black" borderBottomWidth={2} my={4}>
+				<Text fontSize={22} textAlign="center" my={12}>{listTitle}</Text>
+			</Div>
 			{renderedList}
-		</View>
+		</Div>
 	)
 }
 export default MealList
-
-const styles = StyleSheet.create({
-	container: {
-		alignItems: "center",
-	},
-	titleContainer: {
-		borderColor: "black",
-		borderBottomWidth: 2,
-	},
-	title: {
-		fontSize: 22,
-		textAlign: "center",
-		marginVertical: 12,
-	},
-	listItem: {
-		backgroundColor: "#9973A7",
-		borderRadius: 8,
-		margin: 8,
-		textAlign: "center",
-		width: 300,
-	},
-	listItemText: {
-		color: "white",
-		fontSize: 16,
-		textAlign: "center",
-		padding: 8,
-	},
-})

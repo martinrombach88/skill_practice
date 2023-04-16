@@ -33,11 +33,14 @@ const Drawer = createDrawerNavigator()
 
 function DrawerNavigator() {
 	console.log(Theme)
+
 	return (
 		<Drawer.Navigator
 			screenOptions={{
-				headerStyle: { backgroundColor: "bg100" },
-				// headerStyle: { backgroundColor: "#D0E7E0" },
+				//Can't import theme into navigator
+				//This is just another component, so import here and import everywhere the same way
+				// headerStyle: { backgroundColor: "bg100" },
+				headerStyle: { backgroundColor: "#D0E7E0" },
 				// header font
 				headerTintColor: "#0A0438",
 			}}
@@ -75,6 +78,7 @@ function App() {
 				<Stack.Navigator
 					initialRouteName={"CategoriesScreen"}
 					screenOptions={{
+						
 						headerStyle: { backgroundColor: "#D0E7E0" },
 						
 						// header font

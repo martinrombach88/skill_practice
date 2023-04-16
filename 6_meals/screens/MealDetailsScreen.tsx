@@ -1,18 +1,11 @@
-import {
-	Button,
-	Image,
-	Pressable,
-	ScrollView,
-	StyleSheet,
-	Text,
-	View,
-} from "react-native"
+import { Image, Pressable, ScrollView, StyleSheet } from "react-native"
 // import useStore from "../store/Zustand"
 import { useState } from "react"
+import { Div, Text} from "react-native-magnus"
+import MealButton from "../components/MealButton"
 import MealDetails from "../components/MealDetails"
 import MealList from "../components/MealList"
 import { MEALS } from "../data/dummy-data"
-import { Entypo } from "@expo/vector-icons"
 
 type Props = {
 	route: {
@@ -28,8 +21,7 @@ type Favorite = {
 
 function MealDetailsScreen(props: Props) {
 	const [favorite, setFavorite] = useState(false)
-	const[favorites, setFavorites] = useState<Favorite[]>([])
-
+	const [favorites, setFavorites] = useState<Favorite[]>([])
 
 	// const MealDetailsScreen: React.FC<Props> = (itemData) => {
 	const mealId = props.route.params
@@ -52,7 +44,7 @@ function MealDetailsScreen(props: Props) {
 	*/
 	return (
 		<ScrollView>
-			<View style={styles.container}>
+			<Div alignItems="center">
 				<Image
 					style={styles.image}
 					source={{ uri: meal ? meal.imageUrl : null }}
@@ -65,36 +57,13 @@ function MealDetailsScreen(props: Props) {
 						complexity={meal.complexity.toUpperCase()}
 					/>
 				)}
-				<Pressable onPress={favoriteToggle}>
-					<View
-						style={[
-							styles.favoriteButton,
-							favorite
-								? styles.favoriteButtonActive
-								: styles.favoriteButtonInActive,
-						]}
-					>
-						<View style={styles.favoriteIconContainer}>
-							{favorite ? (
-								<Entypo name="star" size={24} color="white" />
-							) : (
-								<Entypo name="star-outlined" size={24} color="white" />
-							)}
-						</View>
-						<View style={styles.favoriteTextContainer}>
-							<Text style={styles.favoriteText}>
-								{favorite ? "Remove Favorite" : "Add Favorite"}
-							</Text>
-						</View>
-					</View>
-				</Pressable>
-				{/* <Button title={"Add to Favorites"} /> */}
+				<MealButton favoriteToggle={favoriteToggle} favorite={favorite} />
 				<MealList
 					listTitle={"Ingredients"}
 					list={meal ? meal.ingredients : null}
 				/>
 				<MealList listTitle={"Steps"} list={meal ? meal.steps : null} />
-			</View>
+			</Div>
 		</ScrollView>
 	)
 }
@@ -114,29 +83,5 @@ const styles = StyleSheet.create({
 		width: "100%",
 		height: 350,
 	},
-	favoriteButton: {
-		flexDirection: "row",
-		justifyContent: "space-evenly",
-		borderRadius: 8,
-	},
-	favoriteIconContainer: {
-		alignItems: "center",
-		justifyContent: "center",
-		width: 40,
-	},
-	favoriteButtonActive: {
-		backgroundColor: "#76A773",
-	},
-	favoriteButtonInActive: {
-		backgroundColor: "black",
-	},
-	favoriteTextContainer: {
-		alignItems: "center",
-		justifyContent: "center",
-		width: 140,
-	},
-	favoriteText: {
-		color: "white",
-		padding: 8,
-	},
+
 })

@@ -1,32 +1,26 @@
-import { StyleSheet, Text, View } from "react-native"
-import mealStyles from "../styles/MealStyles"
+import { Div, Text } from "react-native-magnus"
 
 type Details = {
 	duration: number
-	affordability: string,
-	complexity: string,
+	affordability: string
+	complexity: string
 }
-function MealDetails({duration, affordability, complexity}: Details) {
-// const MealDetails: React.FC<Details> = ({duration, affordability, complexity}) => {
+function MealDetails({ duration, affordability, complexity }: Details) {
+	// const MealDetails: React.FC<Details> = ({duration, affordability, complexity}) => {
+
 	return (
-		<View style={styles.details}>
-			<Text style={styles.detailsText}>{duration} MIN</Text>
-			<Text style={styles.detailsText}>{affordability.toUpperCase()}</Text>
-			<Text style={styles.detailsText}>{complexity.toUpperCase()}</Text>
-		</View>
+		<Div flexDir={"row"} w={"100%"} my={8} justifyContent="center">
+			<Text fontWeight={"bold"} mx={10}>
+				{duration} MIN
+			</Text>
+			<Text fontWeight={"bold"} mx={10}>
+				{affordability.toUpperCase()}
+			</Text>
+			<Text fontWeight={"bold"} mx={10}>
+				{complexity.toUpperCase()}
+			</Text>
+		</Div>
 	)
 }
 export default MealDetails
 
-const styles = StyleSheet.create({
-	details: {
-		flexDirection: "row",
-		width: "100%",
-		marginVertical: 8,
-		justifyContent: "center"
-	},
-	detailsText: {
-		fontWeight: "bold",
-		marginHorizontal: 10,
-	}
-})

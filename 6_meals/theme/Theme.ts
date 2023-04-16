@@ -1,5 +1,7 @@
 import { ThemeType } from 'react-native-magnus'
 
+//Phil's exporting works, you can see the object. The issue is in importation.
+
 interface Theme extends ThemeType {}
 
 export default {

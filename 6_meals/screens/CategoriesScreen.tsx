@@ -1,10 +1,11 @@
+import { FlatList} from "react-native"
+import { Div } from "react-native-magnus"
 import { NativeStackNavigationProp } from "@react-navigation/native-stack"
-import { RootStackParamList } from "../App"
 import { useNavigation } from "@react-navigation/native"
-import { FlatList, StyleSheet, View } from "react-native"
 import CategoryGridTile from "../components/CategoryGridTile"
+import { RootStackParamList } from "../App"
 import { CATEGORIES } from "../data/dummy-data"
-import { Div, Text} from "react-native-magnus"
+
 
 type ItemData = {
 	item: {
@@ -37,12 +38,13 @@ function CategoriesScreen() {
 	}
 
 	return (
-		<Div style={styles.categoryContainer}>
+		<Div flex={1} alignItems="center" >
 			<FlatList
 				data={CATEGORIES} //individual item is a param to renderItem
 				renderItem={renderCategory}
 				numColumns={2}
 				keyExtractor={(item) => item.id}
+				showsVerticalScrollIndicator={false}
 			/>
 		</Div>
 	)
@@ -50,10 +52,3 @@ function CategoriesScreen() {
 
 export default CategoriesScreen
 
-const styles = StyleSheet.create({
-	categoryContainer: {
-		flex: 1,
-		alignItems: "center",
-		paddingTop: 20,
-	},
-})

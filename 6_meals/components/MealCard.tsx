@@ -1,11 +1,8 @@
 import React from "react"
-import { Image, StyleSheet, Text, View } from "react-native"
 import MealDetails from "./MealDetails"
-import { MEALS } from "../data/dummy-data"
-import  mealStyles  from "../styles/MealStyles"
+import { Div, Image, Text} from "react-native-magnus"
 
 type Props = {
-	id: number
 	categoryIds: []
 	title: string
 	affordability: string
@@ -15,7 +12,6 @@ type Props = {
 }
 
 const MealCard: React.FC<Props> = ({
-	id,
 	title,
 	duration,
 	affordability,
@@ -24,32 +20,12 @@ const MealCard: React.FC<Props> = ({
 }) => {
 	return (
 		<>
-			<View style={styles.card}>
-				<Image style={styles.cardImage} source={{ uri: imageUrl }} />
-				<Text style={styles.title}>{title}</Text>
+			<Div my={12} mx={8} rounded="lg" bg="white" shadow="md"> 
+				<Image h={200} w={"100%"} source={{ uri: imageUrl }} rounded="lg"/>
+				<Text fontSize={20} fontWeight="bold" textAlign="center" pt={8}>{title}</Text>
 				<MealDetails duration={duration} affordability={affordability.toUpperCase()} complexity={complexity.toUpperCase()}/>
-				
-			</View>
+			</Div>
 		</>
 	)
 }
 export default MealCard
-
-const styles = StyleSheet.create({
-	title: {
-		fontSize: 20,
-		fontWeight: "bold",
-		textAlign: "center",
-	},
-	card: {
-		marginVertical: 20,
-		marginHorizontal: 8,
-		borderRadius: 8,
-		backgroundColor: "white",
-	},
-	cardImage: {
-		width: "100%",
-		height: 200,
-	},
-
-})
