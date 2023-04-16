@@ -7,7 +7,7 @@ import {
 	Text,
 	View,
 } from "react-native"
-import useStore from "../store/zustand"
+// import useStore from "../store/Zustand"
 import { useState } from "react"
 import MealDetails from "../components/MealDetails"
 import MealList from "../components/MealList"
@@ -21,24 +21,24 @@ type Props = {
 		}
 	}
 }
+
+type Favorite = {
+	id: string
+}
+
 function MealDetailsScreen(props: Props) {
 	const [favorite, setFavorite] = useState(false)
+	const[favorites, setFavorites] = useState<Favorite[]>([])
+
+
 	// const MealDetailsScreen: React.FC<Props> = (itemData) => {
 	const mealId = props.route.params
 	const meal = MEALS.find((item) => item.id === mealId)
 
 	function favoriteToggle() {
-		const id = mealId.id.id
-		const store = useStore((state => state))
-		const favorites = useStore((state => state.ids))
-		const mealIsFavorite = favorites.includes(id)
-
-		if (!mealIsFavorite) {
-			store.addFavorite(id)
-			setFavorite(true)
-		}
-		
-		// favorite ? setFavorite(false) : setFavorite(true)
+		const inputFave = { id: mealId }
+		// setFavorites((favorites) => [...favorites, inputFave])
+		favorite ? setFavorite(false) : setFavorite(true)
 	}
 
 	/*PSEUDO ->
@@ -75,16 +75,16 @@ function MealDetailsScreen(props: Props) {
 						]}
 					>
 						<View style={styles.favoriteIconContainer}>
-						{favorite ? (
-							<Entypo name="star" size={24} color="white" />
-						) : (
-							<Entypo name="star-outlined" size={24} color="white" />
-						)}
+							{favorite ? (
+								<Entypo name="star" size={24} color="white" />
+							) : (
+								<Entypo name="star-outlined" size={24} color="white" />
+							)}
 						</View>
 						<View style={styles.favoriteTextContainer}>
-						<Text style={styles.favoriteText}>
-							{favorite ? "Remove Favorite" : "Add Favorite"}
-						</Text>
+							<Text style={styles.favoriteText}>
+								{favorite ? "Remove Favorite" : "Add Favorite"}
+							</Text>
 						</View>
 					</View>
 				</Pressable>
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
 		justifyContent: "space-evenly",
 		borderRadius: 8,
 	},
-	favoriteIconContainer : {
+	favoriteIconContainer: {
 		alignItems: "center",
 		justifyContent: "center",
 		width: 40,
@@ -130,10 +130,10 @@ const styles = StyleSheet.create({
 	favoriteButtonInActive: {
 		backgroundColor: "black",
 	},
-	favoriteTextContainer : {
+	favoriteTextContainer: {
 		alignItems: "center",
 		justifyContent: "center",
-		width: 140
+		width: 140,
 	},
 	favoriteText: {
 		color: "white",

@@ -1,39 +1,29 @@
-import { Pressable, StyleSheet, Text, View } from "react-native"
+import { Pressable, StyleSheet} from "react-native"
+import { Div, Image, Text} from "react-native-magnus"
 
 type CategoryProps = {
-	title: String,
-	color: String,
-	onPress: any,
+	title: string
+	image: string
+	onPress: () => void
 }
 
 function CategoryGridTile(props: CategoryProps) {
 	return (
-		<View style={[styles.tile, { backgroundColor: props.color }]}>
+		<Div shadow="sm" bg="white" h={150} w={150} mx={16} my={20} rounded="lg" >
 			<Pressable onPress={props.onPress}>
-			<Text style={styles.title} >{props.title}</Text>
+				<Image
+					h={150}
+					w={150}
+					source={{
+						uri: props.image,
+					}}
+					rounded="lg"
+				/>
+				<Text textAlign={"center"} fontSize={"2xl"} fontWeight={"bold"}>{props.title}</Text>
 			</Pressable>
-		</View>
+		</Div>
 	)
 }
 export default CategoryGridTile
 
-const styles = StyleSheet.create({
-	tile: {
-		backgroundColor: "white",
-		alignItems: "center",
-		justifyContent: "center",
-		width: 150,
-		height: 150,
-		margin: 16, 
-		borderRadius: 8,
-		elevation: 4,
-		shadowColor: "black",
-		// shadowOpacity: 0.8,
-		shadowRadius: 10,
-		shadowOffset: {width: 0, height: 2,}
-	 },
-	title: {
-		fontWeight:"bold",
-		fontSize: 18,
-	}
-})
+

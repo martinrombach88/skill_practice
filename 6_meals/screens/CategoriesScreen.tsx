@@ -4,15 +4,17 @@ import { useNavigation } from "@react-navigation/native"
 import { FlatList, StyleSheet, View } from "react-native"
 import CategoryGridTile from "../components/CategoryGridTile"
 import { CATEGORIES } from "../data/dummy-data"
+import { Div, Text} from "react-native-magnus"
 
 type ItemData = {
 	item: {
 		id: string
 		categoryIds: []
 		title: string
-		color: string
+		image: string
 	}
 }
+
 
 function CategoriesScreen() {
 	//Navigation function imports params from App.js navigator
@@ -28,21 +30,21 @@ function CategoriesScreen() {
 		return (
 			<CategoryGridTile
 				title={itemData.item.title}
-				color={itemData.item.color}
+				image={itemData.item.image}
 				onPress={navigateToOverview}
 			/>
 		)
 	}
 
 	return (
-		<View style={styles.categoryContainer}>
+		<Div style={styles.categoryContainer}>
 			<FlatList
 				data={CATEGORIES} //individual item is a param to renderItem
 				renderItem={renderCategory}
 				numColumns={2}
 				keyExtractor={(item) => item.id}
 			/>
-		</View>
+		</Div>
 	)
 }
 
@@ -51,7 +53,6 @@ export default CategoriesScreen
 const styles = StyleSheet.create({
 	categoryContainer: {
 		flex: 1,
-
 		alignItems: "center",
 		paddingTop: 20,
 	},

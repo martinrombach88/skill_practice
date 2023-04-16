@@ -1,6 +1,5 @@
 import { StatusBar } from "expo-status-bar"
 import { StyleSheet, Text, View } from "react-native"
-//If an item doesn't import, it means you need a { } around it
 // import { createStackNavigator } from "@react-navigation/stack"
 import { StackNavigationProp } from "@react-navigation/stack"
 import { NavigationContainer, Route } from "@react-navigation/native"
@@ -11,6 +10,10 @@ import MealsOverviewScreen from "./screens/MealsOverviewScreen"
 import MealDetailsScreen from "./screens/MealDetailsScreen"
 import FavoritesScreen from "./screens/FavoritesScreen"
 import { Ionicons } from "@expo/vector-icons"
+import * as React from 'react';
+import { AppRegistry } from 'react-native';
+import { ThemeProvider } from 'react-native-magnus';
+import Theme from "./theme/Theme"
 
 //Params are set up for each screen
 export type RootStackParamList = {
@@ -29,19 +32,21 @@ const Stack = createNativeStackNavigator<RootStackParamList>()
 const Drawer = createDrawerNavigator()
 
 function DrawerNavigator() {
+	console.log(Theme)
 	return (
 		<Drawer.Navigator
 			screenOptions={{
-				headerStyle: { backgroundColor: "black" },
+				headerStyle: { backgroundColor: "bg100" },
+				// headerStyle: { backgroundColor: "#D0E7E0" },
 				// header font
-				headerTintColor: "white",
+				headerTintColor: "#0A0438",
 			}}
 		>
 			<Drawer.Screen
 				name="CategoriesScreen"
 				component={CategoriesScreen}
 				options={{
-					title: "All Categories",
+					title: "Browse Recipes",
 					drawerIcon: ({ color, size }) => (
 						<Ionicons name="list" color={color} size={size} />
 					),
@@ -64,14 +69,16 @@ function DrawerNavigator() {
 function App() {
 	return (
 		<>
-			<StatusBar style="light" />
+		<ThemeProvider theme={Theme.default}>
+			<StatusBar style="dark" />
 			<NavigationContainer>
 				<Stack.Navigator
 					initialRouteName={"CategoriesScreen"}
 					screenOptions={{
-						headerStyle: { backgroundColor: "black" },
+						headerStyle: { backgroundColor: "#D0E7E0" },
+						
 						// header font
-						headerTintColor: "white",
+						headerTintColor: "#0A0438",
 					}}
 				>
 					<Stack.Screen
@@ -97,17 +104,12 @@ function App() {
 					/>
 				</Stack.Navigator>
 			</NavigationContainer>
+			</ThemeProvider>
 		</>
 	)
 }
 
 export default App
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: "#fff",
-		alignItems: "center",
-		justifyContent: "center",
-	},
-})
+AppRegistry.registerComponent('main', () => App)
+

@@ -3,16 +3,16 @@ import Category from '../models/category';
 import Meal from '../models/meal';
 
 export const CATEGORIES = [
-  new Category('c1', 'Italian', '#EF94B8'),
-  new Category('c2', 'Quick & Easy', '#F46262'),
-  new Category('c3', 'Hamburgers', '#F4BB76'),
-  new Category('c4', 'German', '#F2D973'),
-  new Category('c5', 'Light & Lovely', '#73A9F0'),
-  new Category('c6', 'Exotic', '#63D978'),
-  new Category('c7', 'Breakfast', '#9eecff'),
-  new Category('c8', 'Asian', '#b9ffb0'),
-  new Category('c9', 'French', '#ffc7ff'),
-  new Category('c10', 'Summer', '#B17AD5')
+	new Category('c1', 'Italian', "https://i0.wp.com/www.bastapastamd.com/wp-content/uploads/2014/10/Italian-cuisine-characteristics.jpg"),
+  new Category('c2', 'Quick & Easy', "http://del.h-cdn.co/assets/17/26/1498851545-shot-1-61.jpg"),
+  new Category('c3', 'Hamburgers', 'https://wallpapercave.com/wp/wp1987065.jpg'),
+  new Category('c4', 'German', 'https://gozend.com/wp-content/uploads/2019/07/german-food.jpg'),
+  new Category('c5', 'Light & Lovely', 'https://i.pinimg.com/originals/ed/03/d4/ed03d46f386b7241942f42e3c241b7d7.jpg'),
+  new Category('c6', 'Exotic', 'https://stuffweblog.com/wp-content/uploads/2017/12/most-exotic-foods-from-around-the-world.jpg'),
+  new Category('c7', 'Breakfast', 'https://i.pinimg.com/originals/ea/9a/69/ea9a699ad85f62fe5f09f88ea750e0aa.jpg'),
+  new Category('c8', 'Asian', 'https://a.cdn-hotels.com/gdcs/production50/d1916/51d76cc9-cbe8-4572-a671-545f882f1847.jpg'),
+  new Category('c9', 'French', 'https://th.bing.com/th/id/OIP.7zxxNYKxMlYplz4MMTAttwHaE8?pid=ImgDet&rs=1'),
+  new Category('c10', 'Summer', 'https://breathinglifestyle.com/wp-content/uploads/2019/09/top-summerfoods-960x640.jpeg')
 ];
 
 export const MEALS = [
